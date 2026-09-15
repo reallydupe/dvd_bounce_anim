@@ -3,6 +3,7 @@ import pywinstyles as pws
 import random
 import PIL
 from PIL import Image, ImageOps, ImageTk
+import pathlib
 
 root = tk.Tk("Dvd logo test")
 root.geometry("600x500")
@@ -13,7 +14,7 @@ pws.change_header_color(root, color="black")
 pws.change_title_color(root, color="white")
 w, h = (80, 50) # adjusted to somewhat dvd logo size
 
-img = Image.open("logo.png").resize((w, h), Image.Resampling.LANCZOS)
+img = Image.open(pathlib.Path(__file__).parent / "logo.png").resize((w, h), Image.Resampling.LANCZOS)
 tkImg = ImageTk.PhotoImage(img)
 
 clrs = ["blue", "purple", "pink", "orange", "green", "red", "cyan"]
