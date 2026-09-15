@@ -11,7 +11,7 @@ root.configure(bg="black")
 pws.change_border_color(root, color="black")
 pws.change_header_color(root, color="black")
 pws.change_title_color(root, color="white")
-w, h = (100, 100)
+w, h = (80, 50) # adjusted to somewhat dvd logo size
 
 img = Image.open("logo.png").resize((w, h), Image.Resampling.LANCZOS)
 tkImg = ImageTk.PhotoImage(img)
