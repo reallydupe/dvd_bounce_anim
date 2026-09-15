@@ -3,7 +3,7 @@ import pywinstyles as pws
 import random
 
 root = tk.Tk("Dvd logo test")
-root.geometry("500x500")
+root.geometry("600x500")
 
 root.configure(bg="black")
 pws.change_border_color(root, color="black")
@@ -17,10 +17,14 @@ currentColor = "blue"
 canvas = tk.Canvas(width=root.winfo_width(), height=root.winfo_height(), bg="black", border=0, borderwidth=0, highlightbackground="black", highlightcolor="black")
 canvas.pack()
 
-logo = canvas.create_rectangle(0, 0, w, h, fill="blue") # if you want you can change this for an actual dvd logo im just lazy to do that
+logo = canvas.create_rectangle(0, 0, w, h, fill="blue")
 
-direction = [2, 2]
+Debugging = False
 
+speed = 2
+tickMs = 13 # amount of milliseconds for a tick to pass (change the logo's pos)
+
+direction = [speed, speed]
 
 lastImm = 0
 fTime = True
@@ -56,7 +60,6 @@ def Update():
     hx, hy = (x != root.winfo_width(), y != root.winfo_height()) 
 
     cw, cy = (cProp[0], cProp[1])
-  #  print(cProp)
     ihx, ihy = (x != cw, y != cy) 
 
     if ((hx and hy) and (ihx and ihy)) or imm == True:
@@ -76,10 +79,10 @@ def Update():
             direction[1] = -direction[1]
             ChangeColor()
         imm = True
-     #   print("change", direction, hx, hy)
+        if Debugging: print("[DEBUG] direction change (direction. hit x, hit y)", direction, hx, hy)
 
 
-    root.after(13, Update)
+    root.after(tickMs, Update)
 
 Update()
 
